@@ -15,7 +15,7 @@ app.get("/", (req, res) => {
 app.post("/get", urlencodedParser, async (req, res) => {
   console.log(req.body);
   const data = await db.query(
-    `select * from Users where barcode='${req.body.barcode}'`
+    `select * from Table where barcode='${req.body.barcode}'`
   );
   res.send(data);
   return { data };
