@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="content">
+        <form action="/" action="post">
+          <label for="value">Enter Value:</label>
+          <input
+            id="value"
+            name="name_field"
+            type="text"
+            value="Hell"
+            placeholder="Hel"
+          />
+          <input id="submit" type="button" value="Submit" />
+        </form>
+      </div>
+    </div>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script>
+      $(document).ready(function () {
+        var barcode, pass;
+        $("#submit").click(function () {
+          barcode = $("#value").val();
+          $.post(
+            "http://localhost:3000/get",
+            { barcode: barcode },
+            function (data) {
+              printing(data[0].name);
+            }
+          );
+        });
+      });
+      function printing(name) {
+        var mywind = window.open("", print, "height=600", "width=600");
+        mywind.document.write(name);
+        mywind.document.close();
+        mywind.print();
+        mywind.close();
+      }
+    </script>
+    <script type="text/javascript" src="./script.js"></script>
+  </body>
+</html>
